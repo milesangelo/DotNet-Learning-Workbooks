@@ -1,27 +1,28 @@
 {
-    "recommendations": [
-        // Essential C# Development
-        "ms-dotnettools.csharp",
-        "ms-dotnettools.csdevkit",
-        
-        // Code Quality & Formatting
-        "editorconfig.editorconfig",
-        "ms-vscode.vscode-json",
-        
-        // Git Integration
-        "eamodio.gitlens",
-        
-        // Learning & Documentation
-        "ms-vscode.live-server",
-        "yzhang.markdown-all-in-one",
-        
-        // Productivity
-        "ms-vscode.powershell",
-        "ms-vscode-remote.remote-wsl"
-    ],
-    "unwantedRecommendations": [
-        // Extensions that might conflict or add confusion for learners
-        "ms-vscode.vscode-typescript-next",
-        "ms-python.python"
-    ]
+  "recommendations": [
+    // Essential C# Development
+    "ms-dotnettools.csharp",
+    "ms-dotnettools.csdevkit",
+
+    // Code Quality & Formatting
+    "csharpier.csharpier-vscode",
+    "editorconfig.editorconfig",
+    "ms-vscode.vscode-json",
+
+    // Git Integration
+    "eamodio.gitlens",
+
+    // Learning & Documentation
+    "ms-vscode.live-server",
+    "yzhang.markdown-all-in-one",
+
+    // Productivity
+    "ms-vscode.powershell",
+    "ms-vscode-remote.remote-wsl"
+  ],
+  "unwantedRecommendations": [
+    // Extensions that might conflict or add confusion for learners
+    "ms-vscode.vscode-typescript-next",
+    "ms-python.python"
+  ]
 }
