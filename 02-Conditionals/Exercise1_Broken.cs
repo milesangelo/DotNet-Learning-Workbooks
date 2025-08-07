@@ -14,7 +14,7 @@ using System;
 
 class Exercise1_Broken
 {
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Broken Service Advisor System ===\n");
 

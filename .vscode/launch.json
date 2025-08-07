@@ -1,46 +1,51 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Run Current Project",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build-current",
-            "program": "${workspaceFolder}/${relativeFileDirname}/bin/Debug/net9.0/${relativeFileDirname}.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/${relativeFileDirname}",
-            "console": "internalConsole",
-            "stopAtEntry": false,
-            "internalConsoleOptions": "openOnSessionStart"
-        },
-        {
-            "name": "Run Specific Module",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/${input:projectName}/bin/Debug/net9.0/${input:projectName}.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}/${input:projectName}",
-            "console": "internalConsole",
-            "stopAtEntry": false
-        }
-    ],
-    "inputs": [
-        {
-            "id": "projectName",
-            "type": "pickString",
-            "description": "Select the project to run",
-            "options": [
-                "01-VariablesAndTypes",
-                "02-Conditionals",
-                "03-Loops",
-                "04-Methods",
-                "05-DRYRefactoring",
-                "06-ClassesAndObjects",
-                "07-Collections",
-                "08-EnumsAndSwitch",
-                "09-ErrorHandling"
-            ]
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Current Exercise (F5)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-current-exercise",
+      "program": "${workspaceFolder}/${relativeFileDirname}/bin/Debug/net9.0/${relativeFileDirname}.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/${relativeFileDirname}",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "internalConsoleOptions": "openOnSessionStart",
+      "env": {
+        "DEBUG_EXERCISE": "${fileBasename}"
+      }
+    },
+    {
+      "name": "Run Main Menu",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-current",
+      "program": "${workspaceFolder}/${relativeFileDirname}/bin/Debug/net9.0/${relativeFileDirname}.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/${relativeFileDirname}",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "Run Specific Module",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/${input:projectName}/bin/Debug/net9.0/${input:projectName}.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/${input:projectName}",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "projectName",
+      "type": "pickString",
+      "description": "Select the project to run",
+      "options": ["01-VariablesAndTypes", "02-Conditionals", "03-Loops"]
+    }
+  ]
 }

@@ -8,11 +8,24 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   
-  <!-- Exclude broken exercise files from compilation by default -->
-  <!-- Students can remove these excludes when working on specific exercises -->
-  <ItemGroup>
-    <Compile Remove="Exercise1_Broken.cs" />
-    <None Include="Exercise1_Broken.cs" />
+  <!-- Dynamic compilation based on DEBUG_EXERCISE variable -->
+  <!-- By default, only Program.cs is compiled -->
+  <ItemGroup Condition="'$(DEBUG_EXERCISE)' == ''">
+    <Compile Remove="Exercise*.cs" />
+    <Compile Remove="Challenge*.cs" />
+    <None Include="Exercise*.cs" />
+    <None Include="Challenge*.cs" />
+  </ItemGroup>
+  
+  <!-- Include specific exercise when DEBUG_EXERCISE is set -->
+  <ItemGroup Condition="'$(DEBUG_EXERCISE)' != ''">
+    <Compile Remove="Program.cs" />
+    <Compile Remove="Exercise*.cs" />
+    <Compile Remove="Challenge*.cs" />
+    <None Include="Program.cs" />
+    <None Include="Exercise*.cs" />
+    <None Include="Challenge*.cs" />
+    <Compile Include="$(DEBUG_EXERCISE)" />
   </ItemGroup>
 
 </Project>

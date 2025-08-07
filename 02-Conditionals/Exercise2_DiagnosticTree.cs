@@ -16,7 +16,7 @@ using System;
 
 class Exercise2_DiagnosticTree
 {
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Engine Diagnostic System ===\n");
 

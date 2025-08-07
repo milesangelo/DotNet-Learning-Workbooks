@@ -16,7 +16,7 @@ using System;
 
 class Exercise1_InventoryCount
 {
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Auto Parts Inventory Counter (BROKEN) ===\n");
 

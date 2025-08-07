@@ -7,7 +7,7 @@ using System;
 
 class Exercise1_Fixed
 {
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Service Advisor System (FIXED) ===\n");
 

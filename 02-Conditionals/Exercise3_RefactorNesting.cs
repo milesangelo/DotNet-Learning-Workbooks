@@ -15,7 +15,7 @@ using System;
 
 class Exercise3_RefactorNesting
 {
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Service Appointment Scheduler (Messy Version) ===\n");
 

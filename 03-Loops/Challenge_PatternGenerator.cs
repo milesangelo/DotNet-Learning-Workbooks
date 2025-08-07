@@ -9,7 +9,7 @@ using System;
 
 class Challenge_PatternGenerator
 {
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Pattern Generator Challenge ===\n");
         Console.WriteLine("🎯 Master nested loops through real-world patterns!\n");

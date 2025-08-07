@@ -14,7 +14,7 @@ using System;
 
 class Exercise3_Verbose
 {
-   static void RunExercise()
+   static void Main()
    {
       Console.WriteLine("=== Verbose Service Estimate Calculator ===\n");
 

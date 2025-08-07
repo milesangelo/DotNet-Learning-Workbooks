@@ -14,7 +14,7 @@ using System;
 
 class Exercise3_RefactorDuplication
 {
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Auto Shop Price Calculator (REPETITIVE VERSION) ===\n");
 

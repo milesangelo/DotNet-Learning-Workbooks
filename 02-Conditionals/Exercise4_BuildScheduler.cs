@@ -11,7 +11,7 @@ using System;
 
 class Exercise4_BuildScheduler
 {
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Smart Appointment Scheduler ===\n");
         Console.WriteLine("🎯 Your mission: Build this system from scratch!\n");

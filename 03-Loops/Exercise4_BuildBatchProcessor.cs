@@ -25,7 +25,7 @@ class Exercise4_BuildBatchProcessor
         public string Status { get; set; } = "Pending"; // Pending, Processing, Complete, Backordered
     }
 
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Parts Order Batch Processor ===\n");
         Console.WriteLine("🎯 Your mission: Build this system from scratch!\n");

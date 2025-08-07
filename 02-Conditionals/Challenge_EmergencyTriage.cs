@@ -32,7 +32,7 @@ class Challenge_EmergencyTriage
         public bool NeedsTowing { get; set; }
     }
 
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Emergency Service Triage System ===\n");
         Console.WriteLine("🚨 Multiple emergency requests incoming!\n");

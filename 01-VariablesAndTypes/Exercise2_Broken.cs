@@ -13,7 +13,7 @@ using System;
 
 class Exercise2_Broken
 {
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Buggy Auto Shop Inventory System ===\n");
 

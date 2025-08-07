@@ -21,7 +21,7 @@ class Exercise2_ServiceQueue
         public double ServiceCost { get; set; }
     }
 
-    static void RunExercise()
+    static void Main()
     {
         Console.WriteLine("=== Service Queue Processor (BROKEN) ===\n");
 
