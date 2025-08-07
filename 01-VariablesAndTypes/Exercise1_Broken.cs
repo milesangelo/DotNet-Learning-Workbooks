@@ -10,9 +10,9 @@
 
 using System;
 
-class Program
+class Exercise1_Broken
 {
-    static void Main()
+    static void RunExercise()
     {
         Console.WriteLine("=== Auto Shop Variable Disaster ===\n");
 
@@ -20,38 +20,38 @@ class Program
         string boltsInStock = 150;  // Should this really be a string?
         int customerName = "Mike's Auto";  // An int for a name?
         bool partPrice = 45.99;  // A bool for a price?
-        
+
         // Problem 2: Uninitialized variables (will cause compiler error)
         int orderCount;
         Console.WriteLine($"Orders today: {orderCount}");
-        
+
         // Problem 3: Bad naming conventions
         int CustomerAge = 35;  // Should start with lowercase
         string part_number = "AB-123";  // Should use camelCase, not snake_case
-        double 2ndDiscount = 0.15;  // Can't start with a number!
-        
+        // double 2ndDiscount = 0.15;  // Can't start with a number! (COMMENTED OUT FOR COMPILATION)
+
         // Problem 4: Using var incorrectly
-        var mysteryValue;  // var needs initialization!
-        mysteryValue = 42;
-        
+        // var mysteryValue;  // var needs initialization! (COMMENTED OUT FOR COMPILATION)
+        // mysteryValue = 42;
+
         // Problem 5: Constants that should be constants
         double taxRate = 0.0875;  // This never changes, should be const
         int maxItemsPerOrder = 100;  // This is a business rule, should be const
-        
+
         // Problem 6: Type confusion with math
         string hoursWorked = "8";
         string hourlyRate = "45";
         string totalPay = hoursWorked * hourlyRate;  // Can't multiply strings!
-        
+
         Console.WriteLine($"Bolts: {boltsInStock}");
         Console.WriteLine($"Customer: {customerName}");
         Console.WriteLine($"Part Price: ${partPrice}");
         Console.WriteLine($"Total Pay: ${totalPay}");
-        
+
         // Problem 7: Null reference waiting to happen
         string? invoiceNumber;  // This is nullable
         int invoiceLength = invoiceNumber.Length;  // Will crash at runtime!
-        
+
         Console.WriteLine("\nIf you see this, you fixed everything!");
     }
 }

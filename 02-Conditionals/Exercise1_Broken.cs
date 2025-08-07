@@ -12,12 +12,12 @@
 
 using System;
 
-class Program
+class Exercise1_Broken
 {
-    static void Main()
+    static void RunExercise()
     {
         Console.WriteLine("=== Broken Service Advisor System ===\n");
-        
+
         // Vehicle data
         int mileage = 45000;
         int monthsSinceOilChange = 4;
@@ -26,27 +26,27 @@ class Program
         bool isWeekend = true;
         double engineTemp = 195.5;  // Normal is 180-220
         double oilPressure = 40;     // Normal is 25-65 PSI
-        
+
         // Check if oil change needed
         // BUG: Assignment instead of comparison!
         if (milesSinceOilChange = 5000)
         {
             Console.WriteLine("✓ Oil change recommended at exactly 5000 miles");
         }
-        
+
         // BUG: Should recommend if EITHER condition is true, not both
         if (milesSinceOilChange > 3000 & monthsSinceOilChange > 3)
         {
             Console.WriteLine("✓ Oil change needed (mileage AND time)");
         }
-        
+
         // Check engine health
         // BUG: Wrong operator - should be && not &
         if (engineTemp > 180 & engineTemp < 220)
         {
             Console.WriteLine("✓ Engine temperature normal");
         }
-        
+
         // BUG: Logic is inverted! 
         if (oilPressure < 25 && oilPressure > 65)  // This is impossible!
         {
@@ -56,14 +56,14 @@ class Program
         {
             Console.WriteLine("⚠️ Oil pressure abnormal");
         }
-        
+
         // Customer discount check
         // BUG: String comparison is case sensitive!
         if (customerType == "vip")  // Won't match "VIP"
         {
             Console.WriteLine("✓ VIP discount applied");
         }
-        
+
         // Weekend surcharge
         // BUG: Assignment instead of comparison again!
         if (isWeekend = false)
@@ -74,7 +74,7 @@ class Program
         {
             Console.WriteLine("⚠️ Weekend surcharge applies");
         }
-        
+
         // Complex service recommendation
         // BUG: Multiple issues here!
         bool needsService = false;
@@ -86,7 +86,7 @@ class Program
         {
             needsService = false;  // Why would we NOT need service at higher mileage?
         }
-        
+
         // Warranty check
         bool underWarranty = true;
         // BUG: Using bitwise OR instead of logical OR
@@ -94,14 +94,14 @@ class Program
         {
             underWarranty = false;
         }
-        
+
         // Priority calculation
         // BUG: Mixing && and || incorrectly - needs parentheses!
         if (engineTemp > 220 || oilPressure < 25 && customerType == "VIP")
         {
             Console.WriteLine("⚠️ PRIORITY SERVICE NEEDED");
         }
-        
+
         // Service bay assignment
         int bayNumber = 0;
         // BUG: No else-if structure, all conditions run!
@@ -119,7 +119,7 @@ class Program
         }
         // BUG: bayNumber could still be 0!
         Console.WriteLine($"Assigned to Bay {bayNumber}");
-        
+
         // Brake check logic
         bool brakesOK = true;
         int brakeThickness = 3;  // mm
@@ -128,13 +128,13 @@ class Program
         {
             brakesOK = false;
         }
-        
+
         // Final summary
         Console.WriteLine("\n--- Service Summary ---");
         Console.WriteLine($"Needs Service: {needsService}");
         Console.WriteLine($"Under Warranty: {underWarranty}");
         Console.WriteLine($"Brakes OK: {brakesOK}");
-        
+
         // BUG: Dead code - unreachable!
         return;
         Console.WriteLine("Thank you for choosing our shop!");

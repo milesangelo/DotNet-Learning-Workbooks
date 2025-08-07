@@ -13,12 +13,12 @@
 
 using System;
 
-class Program
+class Exercise3_RefactorNesting
 {
-    static void Main()
+    static void RunExercise()
     {
         Console.WriteLine("=== Service Appointment Scheduler (Messy Version) ===\n");
-        
+
         // Customer and appointment data
         string customerName = "John Smith";
         string customerType = "VIP";
@@ -28,18 +28,18 @@ class Program
         int requestedHour = 9;  // 24-hour format
         string serviceType = "brake_service";
         bool isEmergency = false;
-        
+
         // Shop data
         bool[] mechanicAvailable = { false, true, true, false, true }; // Bay 1-5
         int[] baySpecialty = { 1, 2, 2, 3, 1 }; // 1=general, 2=brake, 3=engine
         bool hasNecessaryParts = true;
         double estimatedHours = 2.5;
-        
+
         // The NESTING NIGHTMARE begins here...
         // This works but is impossible to maintain!
-        
+
         Console.WriteLine("🔍 Processing appointment request...");
-        
+
         if (customerName != null && customerName.Length > 0)
         {
             if (customerType == "VIP" || customerType == "Regular" || customerType == "New")
@@ -59,7 +59,7 @@ class Program
                                         // Find available mechanic
                                         bool foundMechanic = false;
                                         int assignedBay = -1;
-                                        
+
                                         for (int bay = 0; bay < mechanicAvailable.Length; bay++)
                                         {
                                             if (mechanicAvailable[bay] == true)
@@ -93,7 +93,7 @@ class Program
                                                 }
                                             }
                                         }
-                                        
+
                                         if (foundMechanic == true)
                                         {
                                             if (estimatedHours <= 8)
@@ -179,13 +179,13 @@ class Program
         {
             Console.WriteLine("❌ Customer name required");
         }
-        
+
         Console.WriteLine("\n💭 This code works... but at what cost?");
         Console.WriteLine("   - 15+ levels of nesting!");
         Console.WriteLine("   - Impossible to debug");
         Console.WriteLine("   - Duplicate logic everywhere");
         Console.WriteLine("   - Arrow anti-pattern in full effect");
-        
+
         // Even more nested horror for special cases...
         if (isEmergency)
         {

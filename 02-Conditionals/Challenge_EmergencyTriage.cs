@@ -10,7 +10,7 @@
 using System;
 using System.Collections.Generic;
 
-class Program
+class Challenge_EmergencyTriage
 {
     // Service request structure for your triage system
     public class ServiceRequest
@@ -31,22 +31,22 @@ class Program
         public bool NeedsSpecialEquipment { get; set; }
         public bool NeedsTowing { get; set; }
     }
-    
-    static void Main()
+
+    static void RunExercise()
     {
         Console.WriteLine("=== Emergency Service Triage System ===\n");
         Console.WriteLine("🚨 Multiple emergency requests incoming!\n");
-        
+
         // Simulate multiple simultaneous emergency requests
         var requests = GetEmergencyRequests();
-        
+
         Console.WriteLine($"📱 {requests.Count} emergency requests received:");
         for (int i = 0; i < requests.Count; i++)
         {
             var req = requests[i];
-            Console.WriteLine($"  {i+1}. {req.CustomerName} - {req.ProblemType} (Severity: {req.SeverityLevel})");
+            Console.WriteLine($"  {i + 1}. {req.CustomerName} - {req.ProblemType} (Severity: {req.SeverityLevel})");
         }
-        
+
         Console.WriteLine("\n🎯 YOUR CHALLENGE:");
         Console.WriteLine("Build a TriageRequests() method that:");
         Console.WriteLine("1. Prioritizes all requests intelligently");
@@ -54,19 +54,19 @@ class Program
         Console.WriteLine("3. Handles resource conflicts");
         Console.WriteLine("4. Provides clear reasoning for decisions");
         Console.WriteLine("5. Optimizes for both safety and business");
-        
+
         // TODO: Implement your triage system!
         // TriageRequests(requests);
-        
+
         Console.WriteLine("\n⚠️ Replace this placeholder with your solution!");
         ShowTriageRequirements();
     }
-    
+
     static List<ServiceRequest> GetEmergencyRequests()
     {
         return new List<ServiceRequest>
         {
-            new ServiceRequest 
+            new ServiceRequest
             {
                 CustomerName = "Sarah Johnson",
                 CustomerType = "VIP",
@@ -84,7 +84,7 @@ class Program
                 NeedsSpecialEquipment = false,
                 NeedsTowing = false
             },
-            new ServiceRequest 
+            new ServiceRequest
             {
                 CustomerName = "Mike Rodriguez",
                 CustomerType = "Regular",
@@ -102,7 +102,7 @@ class Program
                 NeedsSpecialEquipment = true,
                 NeedsTowing = true
             },
-            new ServiceRequest 
+            new ServiceRequest
             {
                 CustomerName = "Emily Chen",
                 CustomerType = "New",
@@ -120,7 +120,7 @@ class Program
                 NeedsSpecialEquipment = false,
                 NeedsTowing = false
             },
-            new ServiceRequest 
+            new ServiceRequest
             {
                 CustomerName = "Robert Wilson",
                 CustomerType = "VIP",
@@ -138,7 +138,7 @@ class Program
                 NeedsSpecialEquipment = true,
                 NeedsTowing = true
             },
-            new ServiceRequest 
+            new ServiceRequest
             {
                 CustomerName = "Lisa Thompson",
                 CustomerType = "Regular",
@@ -158,7 +158,7 @@ class Program
             }
         };
     }
-    
+
     static void ShowTriageRequirements()
     {
         Console.WriteLine("\n📋 TRIAGE SYSTEM REQUIREMENTS:");
@@ -170,14 +170,14 @@ class Program
         Console.WriteLine("  5. DISTANCE - Closer customers get slight priority");
         Console.WriteLine("  6. WAIT TIME - Earlier requests get tiebreaker priority");
         Console.WriteLine("  7. WARRANTY STATUS - Warranty work slightly prioritized");
-        
+
         Console.WriteLine("\n🔧 RESOURCE CONSTRAINTS:");
         Console.WriteLine("  • Only 2 mobile mechanics available");
-        Console.WriteLine("  • Only 1 tow truck available");  
+        Console.WriteLine("  • Only 1 tow truck available");
         Console.WriteLine("  • Shop has 4 bays (1 with special equipment)");
         Console.WriteLine("  • Maximum 3 emergency services per hour");
         Console.WriteLine("  • Senior mechanic needed for severity 8+ problems");
-        
+
         Console.WriteLine("\n⚖️ BUSINESS RULES:");
         Console.WriteLine("  • Safety issues always come first (regardless of customer type)");
         Console.WriteLine("  • VIP customers get preference when safety is equal");
@@ -185,7 +185,7 @@ class Program
         Console.WriteLine("  • New customers might need additional verification time");
         Console.WriteLine("  • Warranty work has different profit margins");
         Console.WriteLine("  • Long-distance calls need travel time consideration");
-        
+
         Console.WriteLine("\n📊 YOUR TRIAGE METHOD SHOULD:");
         Console.WriteLine("  1. Calculate a priority score for each request");
         Console.WriteLine("  2. Sort requests by priority");
@@ -194,7 +194,7 @@ class Program
         Console.WriteLine("  5. Provide estimated response times");
         Console.WriteLine("  6. Give clear explanations for prioritization decisions");
         Console.WriteLine("  7. Suggest alternatives when resources are limited");
-        
+
         Console.WriteLine("\n🧮 SUGGESTED SCORING ALGORITHM:");
         Console.WriteLine("  Priority Score = ");
         Console.WriteLine("    (SafetyMultiplier * 1000) +");
@@ -204,7 +204,7 @@ class Program
         Console.WriteLine("    (WarrantyBonus * 25) +");
         Console.WriteLine("    (DistanceBonus * 10) +");
         Console.WriteLine("    (WaitTimeBonus * 5)");
-        
+
         Console.WriteLine("\n💡 ADVANCED FEATURES TO CONSIDER:");
         Console.WriteLine("  • Multi-criteria decision making");
         Console.WriteLine("  • Resource optimization");
@@ -212,7 +212,7 @@ class Program
         Console.WriteLine("  • Dynamic re-prioritization as new requests arrive");
         Console.WriteLine("  • Cost-benefit analysis");
         Console.WriteLine("  • Load balancing across mechanics");
-        
+
         Console.WriteLine("\n🧪 EXPECTED OUTPUT EXAMPLE:");
         Console.WriteLine("  === TRIAGE RESULTS ===");
         Console.WriteLine("  Priority 1: Mike Rodriguez (Score: 2850)");
@@ -224,14 +224,14 @@ class Program
         Console.WriteLine("    Reason: Safety + VIP + High Severity");
         Console.WriteLine("    Assigned: Bay #3 (ready now)");
         Console.WriteLine("    ETA: Customer can drive in");
-        
+
         Console.WriteLine("\n🎖️ BONUS CHALLENGES:");
         Console.WriteLine("  • Handle edge cases (all mechanics busy, equipment down)");
         Console.WriteLine("  • Implement a waiting list with notifications");
         Console.WriteLine("  • Add weather considerations (rain affects mobile service)");
         Console.WriteLine("  • Create a callback system for status updates");
         Console.WriteLine("  • Optimize for maximum shop revenue vs. customer satisfaction");
-        
+
         Console.WriteLine("\n🏆 MASTERY CRITERIA:");
         Console.WriteLine("  ✅ Logical, defensible prioritization");
         Console.WriteLine("  ✅ Proper resource allocation");
@@ -239,14 +239,14 @@ class Program
         Console.WriteLine("  ✅ Handles edge cases gracefully");
         Console.WriteLine("  ✅ Balances safety, service, and business needs");
         Console.WriteLine("  ✅ Code is clean and well-structured");
-        
+
         Console.WriteLine("\n🚀 This is a real-world problem!");
         Console.WriteLine("Emergency service dispatchers face exactly these decisions.");
         Console.WriteLine("Your solution should be something you'd trust with people's safety!");
     }
-    
+
     // TODO: Implement these methods!
-    
+
     /*
     static List<ServiceRequest> TriageRequests(List<ServiceRequest> requests)
     {

@@ -9,32 +9,32 @@
 
 using System;
 
-class Program
+class Exercise4_BuildScheduler
 {
-    static void Main()
+    static void RunExercise()
     {
         Console.WriteLine("=== Smart Appointment Scheduler ===\n");
         Console.WriteLine("🎯 Your mission: Build this system from scratch!\n");
-        
+
         // TODO: Replace this placeholder with your implementation
         Console.WriteLine("⚠️ PLACEHOLDER - Build your scheduler here!");
-        
+
         // Uncomment and modify this when you start:
         // TestYourScheduler();
     }
-    
+
     // TODO: Implement this method
     static void TestYourScheduler()
     {
         Console.WriteLine("🧪 Testing your scheduler...\n");
-        
+
         // Test cases to verify your logic
         Console.WriteLine("Test 1: VIP customer, brake service, weekday morning");
         // TODO: Call your scheduling method here
-        
+
         Console.WriteLine("\nTest 2: New customer, emergency, weekend");
         // TODO: Call your scheduling method here
-        
+
         Console.WriteLine("\nTest 3: Regular customer, oil change, busy day");
         // TODO: Call your scheduling method here
     }

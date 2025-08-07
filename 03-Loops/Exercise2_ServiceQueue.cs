@@ -8,7 +8,7 @@
 using System;
 using System.Collections.Generic;
 
-class Program
+class Exercise2_ServiceQueue
 {
     // Customer data structure
     public class Customer
@@ -20,104 +20,104 @@ class Program
         public int WaitTime { get; set; } // minutes
         public double ServiceCost { get; set; }
     }
-    
-    static void Main()
+
+    static void RunExercise()
     {
         Console.WriteLine("=== Service Queue Processor (BROKEN) ===\n");
-        
+
         // Initialize the service queue
         var serviceQueue = GetCustomerQueue();
-        
+
         Console.WriteLine($"📋 Starting day with {serviceQueue.Count} customers in queue\n");
-        
+
         // Shop operating data
         bool shopIsOpen = true;
         int currentTime = 480; // 8:00 AM in minutes (8 * 60)
         int closingTime = 1020; // 5:00 PM in minutes (17 * 60)
         int processedCount = 0;
         double totalRevenue = 0;
-        
+
         Console.WriteLine("🔧 Processing customer queue...\n");
-        
+
         // PROBLEM 1: Wrong loop type and condition
         // This should use while loop, not for, since queue changes
         for (int i = 0; i < serviceQueue.Count; i++)
         {
             var customer = serviceQueue[i];
-            
+
             // PROBLEM 2: Time check is backwards!
             if (currentTime >= closingTime) // BUG: Should be >= not <
             {
                 Console.WriteLine($"⏰ Shop closed at {FormatTime(currentTime)}");
                 continue; // BUG: Continue doesn't make sense here - should break
             }
-            
+
             // PROBLEM 3: Priority customer logic is inverted
             if (customer.IsPriority)
             {
                 continue; // BUG: This SKIPS priority customers instead of processing them first!
             }
-            
+
             // PROBLEM 4: Already processed check is wrong
             if (customer.IsProcessed == false) // BUG: Double negative logic, confusing
             {
                 continue; // BUG: This skips unprocessed customers!
             }
-            
+
             // Process the customer
             Console.WriteLine($"🔧 Processing: {customer.Name} - {customer.ServiceType}");
-            
+
             // PROBLEM 5: Time advancement logic error
             int serviceTime = GetServiceTime(customer.ServiceType);
             currentTime += serviceTime;
             customer.WaitTime += serviceTime; // BUG: Wait time should not include service time!
-            
+
             // Mark as processed
             customer.IsProcessed = true;
             processedCount++;
             totalRevenue += customer.ServiceCost;
-            
+
             // PROBLEM 6: Removing from list while iterating!
             serviceQueue.RemoveAt(i); // BUG: This changes indices, skips customers!
-            
+
             Console.WriteLine($"✅ Completed {customer.Name} at {FormatTime(currentTime)}");
         }
-        
+
         // PROBLEM 7: Second pass with different loop issues
         Console.WriteLine("\n--- Processing Remaining Priority Customers ---");
         int priorityIndex = 0;
         while (priorityIndex < serviceQueue.Count)
         {
             var customer = serviceQueue[priorityIndex];
-            
+
             if (!customer.IsPriority)
             {
                 priorityIndex++; // Skip non-priority
                 continue;
             }
-            
+
             // PROBLEM 8: Infinite loop potential!
             if (currentTime > closingTime)
             {
                 Console.WriteLine("⏰ Too late for more customers");
                 // BUG: No break statement! Loop will continue forever
             }
-            
+
             // Process priority customer
             Console.WriteLine($"⚡ Priority service: {customer.Name}");
             int serviceTime = GetServiceTime(customer.ServiceType);
             currentTime += serviceTime;
-            
+
             customer.IsProcessed = true;
             processedCount++;
             totalRevenue += customer.ServiceCost;
-            
+
             // BUG: Not incrementing priorityIndex, will process same customer forever!
         }
-        
+
         // PROBLEM 9: Nested loop confusion
         Console.WriteLine("\n--- Final Status Report ---");
-        
+
         // This nested loop makes no sense for this task!
         foreach (var customer in serviceQueue)
         {
@@ -140,7 +140,7 @@ class Program
                 // BUG: This loop runs unnecessarily 3 times per customer
             }
         }
-        
+
         // PROBLEM 10: Do-while loop used incorrectly
         Console.WriteLine("\n--- Customer Satisfaction Survey ---");
         int surveyIndex = 0;
@@ -150,24 +150,24 @@ class Program
             {
                 break;
             }
-            
+
             var customer = serviceQueue[surveyIndex];
             if (customer.IsProcessed && customer.WaitTime > 30)
             {
                 Console.WriteLine($"📋 Survey sent to {customer.Name} (waited {customer.WaitTime} min)");
             }
-            
+
             surveyIndex++;
-            
+
         } while (surveyIndex < serviceQueue.Count); // BUG: Condition already checked inside!
-        
+
         // Summary
         Console.WriteLine($"\n📊 End of Day Summary:");
         Console.WriteLine($"Customers processed: {processedCount}");
         Console.WriteLine($"Total revenue: ${totalRevenue:F2}");
         Console.WriteLine($"Closed at: {FormatTime(currentTime)}");
     }
-    
+
     static List<Customer> GetCustomerQueue()
     {
         return new List<Customer>
@@ -180,7 +180,7 @@ class Program
             new Customer { Name = "Emergency Bob", ServiceType = "Towing", IsPriority = true, ServiceCost = 99.99, WaitTime = 1 }
         };
     }
-    
+
     static int GetServiceTime(string serviceType)
     {
         return serviceType switch
@@ -194,7 +194,7 @@ class Program
             _ => 30
         };
     }
-    
+
     static string FormatTime(int minutes)
     {
         int hours = minutes / 60;

@@ -14,12 +14,12 @@
 
 using System;
 
-class Program
+class Exercise2_DiagnosticTree
 {
-    static void Main()
+    static void RunExercise()
     {
         Console.WriteLine("=== Engine Diagnostic System ===\n");
-        
+
         // Diagnostic data
         bool engineStarts = true;
         bool hasElectricity = true;
@@ -31,9 +31,9 @@ class Program
         bool checkEngineLight = true;
         string lastService = "oil_change";  // oil_change, tune_up, inspection
         int daysSinceService = 45;
-        
+
         Console.WriteLine("🔍 Running diagnostics...\n");
-        
+
         // PROBLEM 1: Order of operations confusion
         // BUG: This doesn't work as expected due to operator precedence
         if (engineStarts && hasElectricity || hasFuel && hasCompression)
@@ -44,7 +44,7 @@ class Program
         {
             Console.WriteLine("⚠️ Basic system failure detected");
         }
-        
+
         // PROBLEM 2: Impossible condition
         // BUG: Temperature can't be both too hot AND too cold!
         if (coolantTemp < 180 && coolantTemp > 220)
@@ -55,7 +55,7 @@ class Program
         {
             Console.WriteLine("✓ Temperature normal");
         }
-        
+
         // PROBLEM 3: Complex nested disaster
         // BUG: Arrow anti-pattern with multiple logic errors
         if (engineStarts)
@@ -101,14 +101,14 @@ class Program
         {
             Console.WriteLine("⚠️ Engine won't start");
         }
-        
+
         // PROBLEM 4: String comparison bugs with OR logic
         // BUG: Should use || but mixing with wrong string comparisons
         if (lastService == "Oil_Change" | lastService == "TUNE_UP" | daysSinceService < 30)
         {
             Console.WriteLine("✓ Recent service completed");
         }
-        
+
         // PROBLEM 5: Contradictory logic
         bool needsImmedateAttention = false;
         // BUG: These conditions fight each other
@@ -124,14 +124,14 @@ class Program
         {
             needsImmedateAttention = false;  // BUG: Why override safety concerns?
         }
-        
+
         // PROBLEM 6: Wrong operator precedence with dangerous conditions
         // BUG: This is supposed to check for emergency conditions but logic is wrong
         if (oilPressure < 10 || coolantTemp > 240 && !engineStarts || hasCompression == false)
         {
             Console.WriteLine("🚨 EMERGENCY: Stop engine immediately!");
         }
-        
+
         // PROBLEM 7: Unreachable code due to logic error
         bool canContinueDriving = true;
         if (oilPressure >= 25 && coolantTemp <= 220 && engineStarts)
@@ -147,14 +147,14 @@ class Program
         {
             canContinueDriving = false;
         }
-        
+
         // PROBLEM 8: Complex condition that's hard to understand
         // BUG: What is this even checking? And the logic is probably wrong too.
         if ((engineStarts && hasFuel || hasElectricity) && !(oilPressure < 25 && coolantTemp > 220) || checkEngineLight && daysSinceService > 30 && lastService != "inspection")
         {
             Console.WriteLine("System status: Unclear recommendation");
         }
-        
+
         // PROBLEM 9: Missing null checks and edge cases
         string? errorCode = GetErrorCode(checkEngineLight);
         // BUG: What if errorCode is null?
@@ -162,12 +162,12 @@ class Program
         {
             Console.WriteLine($"Engine error code: {errorCode}");
         }
-        
+
         Console.WriteLine($"\n📊 Final Assessment:");
         Console.WriteLine($"Can continue driving: {canContinueDriving}");
         Console.WriteLine($"Needs immediate attention: {needsImmedateAttention}");
     }
-    
+
     // Helper method that sometimes returns null
     static string? GetErrorCode(bool hasCheckEngineLight)
     {

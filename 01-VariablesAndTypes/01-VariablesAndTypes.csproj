@@ -7,5 +7,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  
+  <!-- Exclude broken exercise files from compilation by default -->
+  <!-- Students can remove these excludes when working on specific exercises -->
+  <ItemGroup>
+    <Compile Remove="Exercise1_Broken.cs" />
+    <Compile Remove="Exercise2_Broken.cs" />
+    <None Include="Exercise1_Broken.cs" />
+    <None Include="Exercise2_Broken.cs" />
+  </ItemGroup>
 
 </Project>

@@ -7,27 +7,27 @@
 
 using System;
 
-class Program
+class Challenge_PatternGenerator
 {
-    static void Main()
+    static void RunExercise()
     {
         Console.WriteLine("=== Pattern Generator Challenge ===\n");
         Console.WriteLine("🎯 Master nested loops through real-world patterns!\n");
-        
+
         Console.WriteLine("Your mission: Create methods that generate various");
         Console.WriteLine("patterns used in auto shop management and operations.\n");
-        
+
         Console.WriteLine("⚠️ PLACEHOLDER - Build your pattern generators here!");
         Console.WriteLine("Replace this with your implementations!\n");
-        
+
         // TODO: Implement these pattern generators!
         // DemoPatternGenerators();
-        
+
         ShowChallengeRequirements();
     }
-    
+
     // TODO: Implement these methods!
-    
+
     /*
     static void GenerateWorkSchedule(int weeks, int mechanics, string[] shifts)
     {
@@ -54,11 +54,11 @@ class Program
         // Create hierarchical inventory display
     }
     */
-    
+
     static void ShowChallengeRequirements()
     {
         Console.WriteLine("📋 PATTERN GENERATOR CHALLENGES:\n");
-        
+
         Console.WriteLine("🎯 CHALLENGE 1: WORK SCHEDULE GENERATOR");
         Console.WriteLine("Create a method GenerateWorkSchedule(weeks, mechanics, shifts)");
         Console.WriteLine("Requirements:");
@@ -67,7 +67,7 @@ class Program
         Console.WriteLine("  • Handle weekend/holiday adjustments");
         Console.WriteLine("  • No mechanic works more than 5 consecutive days");
         Console.WriteLine("  • Display in calendar format with ASCII art\n");
-        
+
         Console.WriteLine("Example Output:");
         Console.WriteLine("    Week 1: March 6-12, 2024");
         Console.WriteLine("    ┌─────────┬─────┬─────┬─────┬─────┬─────┐");
@@ -77,7 +77,7 @@ class Program
         Console.WriteLine("    │ Bob     │  A  │  M  │  M  │ OFF │  M  │");
         Console.WriteLine("    │ Charlie │ OFF │ OFF │  A  │  A  │ OFF │");
         Console.WriteLine("    └─────────┴─────┴─────┴─────┴─────┴─────┘\n");
-        
+
         Console.WriteLine("🎯 CHALLENGE 2: MAINTENANCE MATRIX");
         Console.WriteLine("Create GenerateMaintenanceMatrix(equipment, intervals)");
         Console.WriteLine("Requirements:");
@@ -86,7 +86,7 @@ class Program
         Console.WriteLine("  • Mark preventive maintenance vs. inspections");
         Console.WriteLine("  • Highlight overlapping maintenance periods");
         Console.WriteLine("  • Calculate total maintenance hours per month\n");
-        
+
         Console.WriteLine("Example Output:");
         Console.WriteLine("    Maintenance Matrix - 2024");
         Console.WriteLine("    Equipment      │ Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec");
@@ -96,7 +96,7 @@ class Program
         Console.WriteLine("    Diagnostic Tool│  ·   ·   PM  ·   ·   PM  ·   ·   PM  ·   ·   PM");
         Console.WriteLine("    ───────────────┼─────────────────────────────────────────────────");
         Console.WriteLine("    Total Hours    │  4   2   6   4   2   6   4   2   6   4   2   6 \n");
-        
+
         Console.WriteLine("🎯 CHALLENGE 3: SHOP LAYOUT GENERATOR");
         Console.WriteLine("Create GenerateShopLayout(bays, rows, equipment)");
         Console.WriteLine("Requirements:");
@@ -105,7 +105,7 @@ class Program
         Console.WriteLine("  • Show traffic flow patterns");
         Console.WriteLine("  • Include safety zones and emergency exits");
         Console.WriteLine("  • Calculate square footage and efficiency\n");
-        
+
         Console.WriteLine("Example Output:");
         Console.WriteLine("    AutoShop Floor Plan (60' x 40')");
         Console.WriteLine("    ╔══════════════════════════════════════════════════════════╗");
@@ -118,7 +118,7 @@ class Program
         Console.WriteLine("    ║ ═══════════════════════════════════════════════════════  ║");
         Console.WriteLine("    ║           CUSTOMER WAITING AREA                         ║");
         Console.WriteLine("    ╚═══════════════════════════════════════════════════════════╝\n");
-        
+
         Console.WriteLine("🎯 CHALLENGE 4: DYNAMIC PRICE GRID");
         Console.WriteLine("Create GeneratePriceGrid(services, customerTypes)");
         Console.WriteLine("Requirements:");
@@ -127,7 +127,7 @@ class Program
         Console.WriteLine("  • Show before/after pricing");
         Console.WriteLine("  • Highlight best deals with colors/symbols");
         Console.WriteLine("  • Calculate potential revenue per cell\n");
-        
+
         Console.WriteLine("Example Output:");
         Console.WriteLine("    Service Price Matrix");
         Console.WriteLine("    ┌─────────────────┬─────────┬─────────┬─────────┬─────────┐");
@@ -137,7 +137,7 @@ class Program
         Console.WriteLine("    │ Brake Service   │ $149.99 │ $134.99 │ $119.99★│ $134.99 │");
         Console.WriteLine("    │ Tire Rotation   │ $19.99  │ $17.99  │ $14.99★ │ $17.66  │");
         Console.WriteLine("    └─────────────────┴─────────┴─────────┴─────────┴─────────┘\n");
-        
+
         Console.WriteLine("🎯 CHALLENGE 5: HIERARCHICAL INVENTORY REPORT");
         Console.WriteLine("Create GenerateInventoryReport(categories, items)");
         Console.WriteLine("Requirements:");
@@ -146,7 +146,7 @@ class Program
         Console.WriteLine("  • Stock level indicators");
         Console.WriteLine("  • Value calculations at each level");
         Console.WriteLine("  • Tree-like visual structure\n");
-        
+
         Console.WriteLine("Example Output:");
         Console.WriteLine("    Inventory Report - Hierarchical View");
         Console.WriteLine("    📁 Engine Parts ($15,432.50)");
@@ -160,7 +160,7 @@ class Program
         Console.WriteLine("    │  └─ Brake Fluid (32) ────── $504.00 ✅");
         Console.WriteLine("    │");
         Console.WriteLine("    📊 Grand Total: $24,182.50\n");
-        
+
         Console.WriteLine("🔥 ADVANCED LOOP TECHNIQUES TO MASTER:");
         Console.WriteLine("  1. NESTED FOR LOOPS:");
         Console.WriteLine("     for (int row = 0; row < rows; row++)");
@@ -186,7 +186,7 @@ class Program
         Console.WriteLine("     for (int x = 0; x < width; x++)");
         Console.WriteLine("         for (int y = 0; y < height; y++)");
         Console.WriteLine("             grid[x, y] = CalculateValue(x, y);\n");
-        
+
         Console.WriteLine("🏆 MASTERY CRITERIA:");
         Console.WriteLine("  ✅ All 5 pattern generators implemented");
         Console.WriteLine("  ✅ Proper use of nested loops");
@@ -196,21 +196,21 @@ class Program
         Console.WriteLine("  ✅ Mathematical correctness (totals, averages)");
         Console.WriteLine("  ✅ Real-world applicability");
         Console.WriteLine("  ✅ Code that's maintainable and extensible\n");
-        
+
         Console.WriteLine("💡 PERFORMANCE CONSIDERATIONS:");
         Console.WriteLine("  • Be mindful of O(n²) and O(n³) complexity");
         Console.WriteLine("  • Cache calculations when possible");
         Console.WriteLine("  • Use StringBuilder for extensive string building");
         Console.WriteLine("  • Consider early exits with break/continue");
         Console.WriteLine("  • Profile your nested loops for large datasets\n");
-        
+
         Console.WriteLine("🎨 VISUAL DESIGN TIPS:");
         Console.WriteLine("  • Use Unicode characters for better visual impact");
         Console.WriteLine("  • Align columns properly with padding");
         Console.WriteLine("  • Use colors/symbols to convey status");
         Console.WriteLine("  • Make patterns scannable and readable");
         Console.WriteLine("  • Test with different terminal widths\n");
-        
+
         Console.WriteLine("🚀 This challenge will push your loop skills to the limit!");
         Console.WriteLine("You'll be thinking in 2D, 3D, and even time dimensions.");
         Console.WriteLine("Master this, and you'll handle any nested loop scenario!");

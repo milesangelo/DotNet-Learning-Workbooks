@@ -12,22 +12,22 @@
 
 using System;
 
-class Program
+class Exercise3_RefactorDuplication
 {
-    static void Main()
+    static void RunExercise()
     {
         Console.WriteLine("=== Auto Shop Price Calculator (REPETITIVE VERSION) ===\n");
-        
+
         // Customer order data
         string customerName = "John Smith";
         bool isVipCustomer = false;
         bool isWarrantyWork = true;
-        
+
         Console.WriteLine($"Processing order for: {customerName}\n");
-        
+
         // DUPLICATION DISASTER #1: Repetitive service pricing
         Console.WriteLine("--- Service Pricing ---");
-        
+
         string service1 = "oil_change";
         double price1 = 0;
         if (service1 == "oil_change")
@@ -37,7 +37,7 @@ class Program
             if (isWarrantyWork) price1 = price1 * 0.5; // 50% warranty discount
             Console.WriteLine($"Oil Change: ${price1:F2}");
         }
-        
+
         string service2 = "brake_service";
         double price2 = 0;
         if (service2 == "brake_service")
@@ -47,7 +47,7 @@ class Program
             if (isWarrantyWork) price2 = price2 * 0.5; // Same discount logic repeated!
             Console.WriteLine($"Brake Service: ${price2:F2}");
         }
-        
+
         string service3 = "tire_rotation";
         double price3 = 0;
         if (service3 == "tire_rotation")
@@ -57,7 +57,7 @@ class Program
             if (isWarrantyWork) price3 = price3 * 0.5; // Same discount logic repeated!
             Console.WriteLine($"Tire Rotation: ${price3:F2}");
         }
-        
+
         string service4 = "inspection";
         double price4 = 0;
         if (service4 == "inspection")
@@ -67,7 +67,7 @@ class Program
             if (isWarrantyWork) price4 = price4 * 0.5; // Same discount logic repeated!
             Console.WriteLine($"Inspection: ${price4:F2}");
         }
-        
+
         string service5 = "engine_diagnostic";
         double price5 = 0;
         if (service5 == "engine_diagnostic")
@@ -77,33 +77,33 @@ class Program
             if (isWarrantyWork) price5 = price5 * 0.5; // Same discount logic repeated!
             Console.WriteLine($"Engine Diagnostic: ${price5:F2}");
         }
-        
+
         // DUPLICATION DISASTER #2: Repetitive tax calculations
         Console.WriteLine("\n--- Tax Calculations by State ---");
-        
+
         string state1 = "CA";
         double tax1 = 0;
         if (state1 == "CA") tax1 = (price1 + price2 + price3 + price4 + price5) * 0.0975;
         Console.WriteLine($"California tax: ${tax1:F2}");
-        
+
         string state2 = "TX";
         double tax2 = 0;
         if (state2 == "TX") tax2 = (price1 + price2 + price3 + price4 + price5) * 0.0825;
         Console.WriteLine($"Texas tax: ${tax2:F2}");
-        
+
         string state3 = "FL";
         double tax3 = 0;
         if (state3 == "FL") tax3 = (price1 + price2 + price3 + price4 + price5) * 0.06;
         Console.WriteLine($"Florida tax: ${tax3:F2}");
-        
+
         string state4 = "NY";
         double tax4 = 0;
         if (state4 == "NY") tax4 = (price1 + price2 + price3 + price4 + price5) * 0.08;
         Console.WriteLine($"New York tax: ${tax4:F2}");
-        
+
         // DUPLICATION DISASTER #3: Repetitive inventory checks
         Console.WriteLine("\n--- Parts Inventory Check ---");
-        
+
         string part1 = "Oil Filter";
         int stock1 = 25;
         if (stock1 < 10)
@@ -118,7 +118,7 @@ class Program
         {
             Console.WriteLine($"✅ OK: {part1} - {stock1} in stock");
         }
-        
+
         string part2 = "Brake Pads";
         int stock2 = 3;
         if (stock2 < 10)
@@ -133,7 +133,7 @@ class Program
         {
             Console.WriteLine($"✅ OK: {part2} - {stock2} in stock");
         }
-        
+
         string part3 = "Spark Plugs";
         int stock3 = 15;
         if (stock3 < 10)
@@ -148,7 +148,7 @@ class Program
         {
             Console.WriteLine($"✅ OK: {part3} - {stock3} in stock");
         }
-        
+
         string part4 = "Air Filter";
         int stock4 = 8;
         if (stock4 < 10)
@@ -163,7 +163,7 @@ class Program
         {
             Console.WriteLine($"✅ OK: {part4} - {stock4} in stock");
         }
-        
+
         string part5 = "Coolant";
         int stock5 = 1;
         if (stock5 < 10)
@@ -178,10 +178,10 @@ class Program
         {
             Console.WriteLine($"✅ OK: {part5} - {stock5} in stock");
         }
-        
+
         // DUPLICATION DISASTER #4: Repetitive appointment scheduling
         Console.WriteLine("\n--- Weekly Schedule Generation ---");
-        
+
         // Monday
         Console.WriteLine("Monday Schedule:");
         Console.WriteLine("  8:00 AM - Oil Change (Bay 1)");
@@ -193,7 +193,7 @@ class Program
         Console.WriteLine("  2:00 PM - Available");
         Console.WriteLine("  3:00 PM - Engine Diagnostic (Bay 2)");
         Console.WriteLine("  4:00 PM - Available");
-        
+
         // Tuesday  
         Console.WriteLine("Tuesday Schedule:");
         Console.WriteLine("  8:00 AM - Brake Service (Bay 1)");
@@ -205,7 +205,7 @@ class Program
         Console.WriteLine("  2:00 PM - Tire Rotation (Bay 3)");
         Console.WriteLine("  3:00 PM - Available");
         Console.WriteLine("  4:00 PM - Oil Change (Bay 2)");
-        
+
         // Wednesday
         Console.WriteLine("Wednesday Schedule:");
         Console.WriteLine("  8:00 AM - Inspection (Bay 2)");
@@ -217,13 +217,13 @@ class Program
         Console.WriteLine("  2:00 PM - Engine Diagnostic (Bay 1)");
         Console.WriteLine("  3:00 PM - Available");
         Console.WriteLine("  4:00 PM - Available");
-        
+
         // And this pattern continues for Thursday and Friday...
         // (Omitting for space, but imagine this repeated!)
-        
+
         // DUPLICATION DISASTER #5: Repetitive report generation
         Console.WriteLine("\n--- Monthly Revenue Report ---");
-        
+
         Console.WriteLine("January: $15,234.56");
         Console.WriteLine("February: $18,456.78");
         Console.WriteLine("March: $22,345.67");
@@ -236,12 +236,12 @@ class Program
         Console.WriteLine("October: $23,456.78");
         Console.WriteLine("November: $21,234.56");
         Console.WriteLine("December: $24,567.89");
-        
-        double yearTotal = 15234.56 + 18456.78 + 22345.67 + 19876.54 + 25678.90 + 
-                          28345.67 + 31234.56 + 29876.54 + 26543.21 + 23456.78 + 
+
+        double yearTotal = 15234.56 + 18456.78 + 22345.67 + 19876.54 + 25678.90 +
+                          28345.67 + 31234.56 + 29876.54 + 26543.21 + 23456.78 +
                           21234.56 + 24567.89;
         Console.WriteLine($"Year Total: ${yearTotal:F2}");
-        
+
         Console.WriteLine("\n💭 This code works... but look at all the repetition!");
         Console.WriteLine("   Every time you add a new service, you need to update 5+ places!");
         Console.WriteLine("   Adding a new state? Copy-paste more tax code!");

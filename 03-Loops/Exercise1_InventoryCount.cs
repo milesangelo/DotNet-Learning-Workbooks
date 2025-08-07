@@ -14,27 +14,27 @@
 
 using System;
 
-class Program
+class Exercise1_InventoryCount
 {
-    static void Main()
+    static void RunExercise()
     {
         Console.WriteLine("=== Auto Parts Inventory Counter (BROKEN) ===\n");
-        
+
         // Sample inventory data
         string[] partNames = { "Oil Filter", "Air Filter", "Spark Plugs", "Brake Pads", "Coolant", "Belts" };
         int[] stockCounts = { 25, 15, 48, 8, 32, 12 };
         double[] unitPrices = { 12.99, 8.50, 3.25, 45.00, 15.75, 22.50 };
         bool[] isLowStock = { false, true, false, true, false, true };
-        
+
         Console.WriteLine("🔍 Running inventory checks...\n");
-        
+
         // PROBLEM 1: Off-by-one error - will crash!
         Console.WriteLine("--- All Parts List ---");
         for (int i = 0; i <= partNames.Length; i++)  // BUG: <= should be <
         {
             Console.WriteLine($"{i + 1}. {partNames[i]} - Stock: {stockCounts[i]}");
         }
-        
+
         // PROBLEM 2: Infinite loop disaster!
         Console.WriteLine("\n--- Low Stock Alert ---");
         int checkIndex = 0;
@@ -46,7 +46,7 @@ class Program
             }
             // BUG: Forgot to increment checkIndex! This will run forever!
         }
-        
+
         // PROBLEM 3: Wrong loop type choice
         Console.WriteLine("\n--- Total Value Calculation ---");
         double totalValue = 0;
@@ -57,7 +57,7 @@ class Program
             valueIndex++;
         }
         Console.WriteLine($"Total inventory value: ${totalValue:F2}");
-        
+
         // PROBLEM 4: Break used incorrectly
         Console.WriteLine("\n--- Expensive Items Search ---");
         for (int i = 0; i < unitPrices.Length; i++)
@@ -68,7 +68,7 @@ class Program
             }
             Console.WriteLine($"Expensive: {partNames[i]} - ${unitPrices[i]}");
         }
-        
+
         // PROBLEM 5: Continue logic error
         Console.WriteLine("\n--- Available Parts (In Stock) ---");
         for (int i = 0; i < stockCounts.Length; i++)
@@ -79,7 +79,7 @@ class Program
             }
             Console.WriteLine($"✓ {partNames[i]} - {stockCounts[i]} units");
         }
-        
+
         // PROBLEM 6: Array bounds and logic mixing
         Console.WriteLine("\n--- Stock Status Report ---");
         for (int i = 1; i <= partNames.Length; i++)  // BUG: Starting at 1, going to Length
@@ -88,7 +88,7 @@ class Program
             string status = stockCounts[i] < 10 ? "LOW" : "OK";
             Console.WriteLine($"{partNames[i]}: {stockCounts[i]} units - {status}");
         }
-        
+
         // PROBLEM 7: Nested loop nightmare
         Console.WriteLine("\n--- Finding Parts Under $20 ---");
         bool foundAffordable = false;
@@ -105,7 +105,7 @@ class Program
                 }
             }
         }
-        
+
         // PROBLEM 8: Do-while used inappropriately
         Console.WriteLine("\n--- Reorder Recommendations ---");
         int reorderIndex = 0;
@@ -117,7 +117,7 @@ class Program
             }
             reorderIndex++;
         } while (reorderIndex <= stockCounts.Length);  // BUG: <= instead of <, also do-while unnecessary
-        
+
         // PROBLEM 9: Accumulation error
         Console.WriteLine("\n--- Low Stock Count ---");
         int lowStockCount = 0;
@@ -129,7 +129,7 @@ class Program
             }
         }
         Console.WriteLine($"Items with low stock: {lowStockCount}");
-        
+
         // PROBLEM 10: Performance disaster with nested loops
         Console.WriteLine("\n--- Cross-Reference Check (This will be slow!) ---");
         for (int i = 0; i < partNames.Length; i++)
@@ -147,7 +147,7 @@ class Program
                 }
             }
         }
-        
+
         Console.WriteLine("\n❌ If you see this message, you got lucky!");
         Console.WriteLine("This code has many bugs that should prevent it from running.");
     }
