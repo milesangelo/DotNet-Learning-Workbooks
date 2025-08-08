@@ -57,9 +57,20 @@
 
   // C# Extension Settings
   "dotnet.completion.showCompletionItemsFromUnimportedNamespaces": true,
-  "dotnet.format.enable": true,
+  "dotnet.format.enable": false,
   "dotnet.codeLens.enableReferencesCodeLens": false,
   "dotnet.codeLens.enableTestsCodeLens": false,
+  "dotnet.backgroundAnalysis.analyzerDiagnosticsScope": "fullSolution",
+  "dotnet.backgroundAnalysis.compilerDiagnosticsScope": "fullSolution",
+  "dotnet.server.useOmnisharp": false,
+  "dotnet.preferCSharpExtension": true,
+  "dotnet.enablePackageRestore": true,
+  "dotnet.projects.enableAutomaticRestore": true,
+  "dotnet.completion.showNameCompletionSuggestions": true,
+
+  // CSharpier Settings
+  "csharpier.enableDebugLogs": false,
+  "csharpier.enableFormatDocumentOnSave": true,
 
   // IntelliSense Settings
   "editor.suggest.insertMode": "replace",
@@ -78,16 +89,18 @@
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.defaultProfile.linux": "bash",
 
-  // Problem Panel Settings
-  "problems.decorations.enabled": true,
-  "problems.showCurrentInStatus": true,
-
   // Learning-Friendly Settings
   "workbench.editor.showTabs": "multiple",
   "workbench.editor.enablePreview": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "explorer.confirmDelete": true,
   "explorer.confirmDragAndDrop": true,
+
+  // Exercise Error Checking - Use Ctrl+Shift+E to check current exercise for errors
+  "workbench.panel.defaultLocation": "bottom",
+  "problems.showCurrentInStatus": true,
+  "problems.decorations.enabled": true,
+  "problems.sortOrder": "severity",
 
   // Git Settings
   "git.autofetch": true,
