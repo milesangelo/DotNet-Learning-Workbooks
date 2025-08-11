@@ -36,16 +36,7 @@ Think of variables like labeled storage bins in your shop:
 - Use appropriate types (not everything is a string!)
 - Apply `var` where it makes sense
 
-### Exercise 4: Build From Scratch
-**File:** `Exercise4_BuildIt.cs`
-- Create a simple parts calculator from requirements
-- Must use at least 4 different types
-- Include constants for tax rate and shop fee
 
-### Exercise 5: The Type Safety Challenge
-**File:** `Exercise5_TypeSafety.cs`
-- Fix a program with subtle type conversion bugs
-- Learn why implicit conversions can be dangerous
 
 ## 🔍 Common Pitfalls
 
@@ -99,12 +90,12 @@ Before moving to the next module, can you:
 - [ ] Name variables following C# conventions?
 
 ## 🏁 Challenge Project
-Create a "Quick Quote Calculator" that:
-1. Takes in customer name (string)
-2. Number of labor hours (double)
-3. Parts cost (decimal)
-4. Whether it's a rush job (bool)
-5. Uses constants for hourly rate and rush fee
-6. Outputs a formatted quote
+Create a simple "Parts Calculator" that:
+1. Takes in part name (string)
+2. Quantity needed (int)
+3. Unit price (double)
+4. Whether customer gets a discount (bool)
+5. Uses constants for discount rate and tax rate
+6. Outputs total cost with tax
 
 Remember: The goal isn't to rush through. It's to build muscle memory. Every repetition makes the next one easier!

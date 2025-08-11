@@ -39,18 +39,7 @@ Think of conditionals like your diagnostic flowchart:
 - Complex boolean expressions that need simplifying
 - Convert to guard clauses
 
-### Exercise 4: Build a Service Recommender
-**File:** `Exercise4_BuildIt.cs`
-- Create from scratch using requirements
-- Must handle multiple conditions elegantly
-- Use appropriate operators
-- Include edge case handling
 
-### Exercise 5: Master the Switch
-**File:** `Exercise5_Switch.cs`
-- Convert if/else chains to switch
-- Use switch expressions (C# 8+)
-- Handle all cases exhaustively
 
 ## 🔍 Common Pitfalls
 
@@ -167,19 +156,18 @@ Before moving to the next module, can you:
 
 ## 🏁 Challenge Project
 
-Create a "Smart Service Scheduler" that:
-1. Checks vehicle mileage and recommends services
-2. Considers last service dates
-3. Factors in driving conditions (city/highway)
-4. Applies seasonal checks (winter/summer)
-5. Prioritizes safety-critical services
-6. Handles edge cases (new car, missing history)
+Create a simple "Service Recommender" that:
+1. Takes vehicle mileage (int)
+2. Months since last oil change (int)
+3. Whether brakes are squeaking (bool)
+4. Recommends what service is needed
+5. Uses if/else logic to determine priority
+6. Handles basic edge cases (negative values)
 
 Requirements:
-- Use at least 3 different comparison operators
+- Use at least 2 different comparison operators
 - Include both && and || operators
-- Implement guard clauses
-- Use a switch statement for service types
-- Extract complex conditions to named variables
+- Use guard clauses for invalid input
+- Extract conditions to named boolean variables
 
 Remember: Clear logic is better than clever logic. If you have to think hard to understand it, simplify it!

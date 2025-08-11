@@ -18,40 +18,38 @@ Think of loops like your systematic work patterns:
 
 ## 📚 Exercises
 
-### Exercise 1: Fix the Inventory Counter
+### Exercise 1: End-of-Day Inventory Summary
 **File:** `Exercise1_InventoryCount.cs`
-- Off-by-one errors in array iteration
-- Infinite loop disasters
-- Wrong loop types for the job
-- Break/continue logic errors
+- **Purpose**: Calculate total inventory value and list low-stock items.
+- **What to fix (1–2 bugs)**:
+  - Loop bound skips the last item
+  - Low-stock threshold comparison includes border incorrectly
+- **Acceptance checks** (with sample data):
+  - Total inventory value: `$1742.25`
+  - Low-stock count: `1` (threshold 12)
+  - Low-stock items: `Brake Pads`
 
-### Exercise 2: Debug the Service Queue
+### Exercise 2: Service Queue Processor
 **File:** `Exercise2_ServiceQueue.cs`
-- Process customer queue with while loops
-- Handle priority customers (continue/skip logic)
-- Stop processing at closing time (break logic)
-- Avoid processing same customer twice
+- **Purpose**: Process jobs (emergencies first) until closing; track processed count and revenue.
+- **What to fix (1–2 bugs)**:
+  - Revenue/time added before verifying remaining time
+  - Remaining count should reflect actually unprocessed jobs
+- **Acceptance checks** (with sample data, 8-hour day):
+  - Processed jobs: `5`
+  - Total revenue: `$549.95`
+  - Remaining in queue: `1`
 
-### Exercise 3: Eliminate Code Duplication
+### Exercise 3: Weekly Work Summary
 **File:** `Exercise3_RefactorDuplication.cs`
-- Replace repetitive code with loops
-- Convert multiple if statements to arrays + loops
-- Eliminate copy-paste patterns
-- Choose the right loop type
-
-### Exercise 4: Build Batch Processor
-**File:** `Exercise4_BuildBatchProcessor.cs`
-- Create parts order processing system
-- Process until limits reached
-- Skip unavailable items
-- Generate summary reports
-
-### Exercise 5: Pattern Generator Challenge
-**File:** `Challenge_PatternGenerator.cs`
-- Create work schedule patterns
-- Handle rotating shifts
-- Generate maintenance schedules
-- Master nested loops
+- **Purpose**: Print daily stats, then weekly totals and averages.
+- **What to fix (1–2 bugs)**:
+  - Loop starts at index 1, skipping Monday
+  - Accumulators reset inside the loop
+- **Acceptance checks** (with sample data):
+  - Total Orders: `71`
+  - Total Revenue: `$3195.00`
+  - Average Orders/Day: `10.14`
 
 ## 🔍 Common Pitfalls
 
@@ -220,19 +218,17 @@ Before moving to the next module, can you:
 
 ## 🏁 Challenge Project
 
-Create a "Shop Work Order Processor" that:
-1. **Processes a queue** of work orders until closing time
-2. **Prioritizes emergency** repairs (use continue/break logic)
-3. **Batches similar** work together for efficiency
-4. **Tracks metrics** (orders completed, time spent, revenue)
-5. **Handles interruptions** (emergency calls, parts delays)
-6. **Generates reports** with nested loop summaries
+Create a simple "Work Order Processor" that:
+1. Processes a list of work orders one by one
+2. Skips orders that are marked as "on hold" (continue)
+3. Stops processing when reaching closing time (break)
+4. Counts how many orders were completed
+5. Calculates total revenue
 
 Requirements:
-- Use at least 3 different loop types appropriately
-- Include break/continue logic for special cases
-- Process nested data (customers → vehicles → services)
-- Handle edge cases (empty queues, time limits)
-- Optimize for real-world performance
+- Use a for loop to iterate through orders
+- Include break/continue logic appropriately
+- Keep a running total of completed orders
+- Handle basic edge cases (empty list, no valid orders)
 
 Remember: Loops are powerful but dangerous. A single mistake can freeze your program or crash your system. Think like a mechanic: measure twice, cut once!

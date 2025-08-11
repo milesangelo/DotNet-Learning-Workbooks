@@ -1,197 +1,128 @@
-// 🔧 Exercise 2: Debug the Service Queue Processor
+// 🔧 Exercise 2: Service Queue Processor (Bug Hunt)
 //
-// This service queue system is supposed to process customers
-// throughout the day, but it has multiple loop control issues.
-// It's not handling priorities correctly, can't stop at closing time,
-// and sometimes processes the same customer multiple times!
+// Purpose:
+//   Process today's service jobs until closing time with emergencies handled first.
+//   Track how many jobs were completed and the total revenue.
+//
+// Your task:
+//   This program is almost correct but contains 1–2 subtle logic bugs.
+//   Find and fix them so the output matches the acceptance checks below.
+//
+// Acceptance checks (with current sample data and 8-hour day):
+//   • Processed jobs: 5
+//   • Total revenue: $549.95
+//   • Remaining in queue: 1
+//
+// Hints:
+//   • Verify when you add revenue/time vs. when you check for remaining time
+//   • Ensure the remaining count is based on what was actually processed
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 class Exercise2_ServiceQueue
 {
-    // Customer data structure
-    public class Customer
+    public class Job
     {
         public string Name { get; set; } = "";
-        public string ServiceType { get; set; } = "";
-        public bool IsPriority { get; set; }
-        public bool IsProcessed { get; set; }
-        public int WaitTime { get; set; } // minutes
-        public double ServiceCost { get; set; }
+        public bool IsEmergency { get; set; }
+        public int DurationMin { get; set; }
+        public double Price { get; set; }
     }
 
     static void Main()
     {
-        Console.WriteLine("=== Service Queue Processor (BROKEN) ===\n");
+        Console.WriteLine("=== Service Queue Processor ===\n");
 
-        // Initialize the service queue
-        var serviceQueue = GetCustomerQueue();
+        const int dayMinutes = 8 * 60; // 8 hours
+        int elapsed = 0;
+        int processed = 0;
+        double revenue = 0.0;
 
-        Console.WriteLine($"📋 Starting day with {serviceQueue.Count} customers in queue\n");
+        var jobs = GetJobs()
+            .OrderByDescending(j => j.IsEmergency) // emergencies first
+            .ToList();
 
-        // Shop operating data
-        bool shopIsOpen = true;
-        int currentTime = 480; // 8:00 AM in minutes (8 * 60)
-        int closingTime = 1020; // 5:00 PM in minutes (17 * 60)
-        int processedCount = 0;
-        double totalRevenue = 0;
-
-        Console.WriteLine("🔧 Processing customer queue...\n");
-
-        // PROBLEM 1: Wrong loop type and condition
-        // This should use while loop, not for, since queue changes
-        for (int i = 0; i < serviceQueue.Count; i++)
+        foreach (var job in jobs)
         {
-            var customer = serviceQueue[i];
+            Console.WriteLine(
+                $"Considering: {job.Name} ({job.DurationMin} min){(job.IsEmergency ? " [EMERGENCY]" : "")}"
+            );
 
-            // PROBLEM 2: Time check is backwards!
-            if (currentTime >= closingTime) // BUG: Should be >= not <
+            // BUG 1: Adds revenue/time before verifying available time (last job may not fit)
+            revenue += job.Price;
+            elapsed += job.DurationMin;
+
+            if (elapsed > dayMinutes)
             {
-                Console.WriteLine($"⏰ Shop closed at {FormatTime(currentTime)}");
-                continue; // BUG: Continue doesn't make sense here - should break
+                Console.WriteLine("⏰ Out of time before starting this job.");
+                break; // Should not count this job or its revenue
             }
 
-            // PROBLEM 3: Priority customer logic is inverted
-            if (customer.IsPriority)
-            {
-                continue; // BUG: This SKIPS priority customers instead of processing them first!
-            }
-
-            // PROBLEM 4: Already processed check is wrong
-            if (customer.IsProcessed == false) // BUG: Double negative logic, confusing
-            {
-                continue; // BUG: This skips unprocessed customers!
-            }
-
-            // Process the customer
-            Console.WriteLine($"🔧 Processing: {customer.Name} - {customer.ServiceType}");
-
-            // PROBLEM 5: Time advancement logic error
-            int serviceTime = GetServiceTime(customer.ServiceType);
-            currentTime += serviceTime;
-            customer.WaitTime += serviceTime; // BUG: Wait time should not include service time!
-
-            // Mark as processed
-            customer.IsProcessed = true;
-            processedCount++;
-            totalRevenue += customer.ServiceCost;
-
-            // PROBLEM 6: Removing from list while iterating!
-            serviceQueue.RemoveAt(i); // BUG: This changes indices, skips customers!
-
-            Console.WriteLine($"✅ Completed {customer.Name} at {FormatTime(currentTime)}");
+            processed++;
+            Console.WriteLine($"  ✅ Processed at {FormatTime(elapsed)}");
         }
 
-        // PROBLEM 7: Second pass with different loop issues
-        Console.WriteLine("\n--- Processing Remaining Priority Customers ---");
-        int priorityIndex = 0;
-        while (priorityIndex < serviceQueue.Count)
-        {
-            var customer = serviceQueue[priorityIndex];
+        int remaining = jobs.Count - processed; // BUG 2 possibility: if counting included an unprocessed job
 
-            if (!customer.IsPriority)
-            {
-                priorityIndex++; // Skip non-priority
-                continue;
-            }
+        Console.WriteLine("\n--- End of Day ---");
+        Console.WriteLine($"Processed jobs: {processed}");
+        Console.WriteLine($"Total revenue: ${revenue:F2}");
+        Console.WriteLine($"Remaining in queue: {remaining}");
 
-            // PROBLEM 8: Infinite loop potential!
-            if (currentTime > closingTime)
-            {
-                Console.WriteLine("⏰ Too late for more customers");
-                // BUG: No break statement! Loop will continue forever
-            }
-
-            // Process priority customer
-            Console.WriteLine($"⚡ Priority service: {customer.Name}");
-            int serviceTime = GetServiceTime(customer.ServiceType);
-            currentTime += serviceTime;
-
-            customer.IsProcessed = true;
-            processedCount++;
-            totalRevenue += customer.ServiceCost;
-
-            // BUG: Not incrementing priorityIndex, will process same customer forever!
-        }
-
-        // PROBLEM 9: Nested loop confusion
-        Console.WriteLine("\n--- Final Status Report ---");
-
-        // This nested loop makes no sense for this task!
-        foreach (var customer in serviceQueue)
-        {
-            for (int status = 0; status < 3; status++)
-            {
-                if (status == 0 && customer.IsProcessed)
-                {
-                    Console.WriteLine($"✅ {customer.Name}: Completed");
-                    break; // BUG: Only breaks inner loop
-                }
-                else if (status == 1 && !customer.IsProcessed)
-                {
-                    Console.WriteLine($"⏳ {customer.Name}: Still waiting");
-                    break;
-                }
-                else if (status == 2)
-                {
-                    Console.WriteLine($"❓ {customer.Name}: Unknown status");
-                }
-                // BUG: This loop runs unnecessarily 3 times per customer
-            }
-        }
-
-        // PROBLEM 10: Do-while loop used incorrectly
-        Console.WriteLine("\n--- Customer Satisfaction Survey ---");
-        int surveyIndex = 0;
-        do
-        {
-            if (surveyIndex >= serviceQueue.Count) // BUG: Check should be before array access
-            {
-                break;
-            }
-
-            var customer = serviceQueue[surveyIndex];
-            if (customer.IsProcessed && customer.WaitTime > 30)
-            {
-                Console.WriteLine($"📋 Survey sent to {customer.Name} (waited {customer.WaitTime} min)");
-            }
-
-            surveyIndex++;
-
-        } while (surveyIndex < serviceQueue.Count); // BUG: Condition already checked inside!
-
-        // Summary
-        Console.WriteLine($"\n📊 End of Day Summary:");
-        Console.WriteLine($"Customers processed: {processedCount}");
-        Console.WriteLine($"Total revenue: ${totalRevenue:F2}");
-        Console.WriteLine($"Closed at: {FormatTime(currentTime)}");
+        Console.WriteLine("\nExpected (when fixed):");
+        Console.WriteLine("  Processed jobs: 5");
+        Console.WriteLine("  Total revenue: $549.95");
+        Console.WriteLine("  Remaining in queue: 1");
     }
 
-    static List<Customer> GetCustomerQueue()
+    static List<Job> GetJobs()
     {
-        return new List<Customer>
+        return new List<Job>
         {
-            new Customer { Name = "John Smith", ServiceType = "Oil Change", IsPriority = false, ServiceCost = 29.99, WaitTime = 10 },
-            new Customer { Name = "Emergency Sarah", ServiceType = "Brake Repair", IsPriority = true, ServiceCost = 249.99, WaitTime = 5 },
-            new Customer { Name = "Mike Johnson", ServiceType = "Tire Rotation", IsPriority = false, ServiceCost = 19.99, WaitTime = 15 },
-            new Customer { Name = "VIP Customer", ServiceType = "Full Service", IsPriority = true, ServiceCost = 149.99, WaitTime = 2 },
-            new Customer { Name = "Lisa Chen", ServiceType = "Inspection", IsPriority = false, ServiceCost = 35.00, WaitTime = 20 },
-            new Customer { Name = "Emergency Bob", ServiceType = "Towing", IsPriority = true, ServiceCost = 99.99, WaitTime = 1 }
-        };
-    }
-
-    static int GetServiceTime(string serviceType)
-    {
-        return serviceType switch
-        {
-            "Oil Change" => 30,
-            "Brake Repair" => 120,
-            "Tire Rotation" => 45,
-            "Full Service" => 180,
-            "Inspection" => 60,
-            "Towing" => 90,
-            _ => 30
+            new Job
+            {
+                Name = "Brake Repair",
+                IsEmergency = true,
+                DurationMin = 120,
+                Price = 249.99,
+            },
+            new Job
+            {
+                Name = "Oil Change",
+                IsEmergency = false,
+                DurationMin = 30,
+                Price = 29.99,
+            },
+            new Job
+            {
+                Name = "Full Service",
+                IsEmergency = false,
+                DurationMin = 180,
+                Price = 149.99,
+            },
+            new Job
+            {
+                Name = "Tire Rotation",
+                IsEmergency = false,
+                DurationMin = 45,
+                Price = 19.99,
+            },
+            new Job
+            {
+                Name = "Inspection",
+                IsEmergency = false,
+                DurationMin = 60,
+                Price = 35.00,
+            },
+            new Job
+            {
+                Name = "Towing",
+                IsEmergency = true,
+                DurationMin = 90,
+                Price = 99.99,
+            },
         };
     }
 
@@ -202,46 +133,3 @@ class Exercise2_ServiceQueue
         return $"{hours}:{mins:D2}";
     }
 }
-
-/*
-🔧 DEBUGGING STRATEGY:
-
-1. LOOP TYPE SELECTION:
-   • Use for when you know exact iterations
-   • Use while when condition-based (queue processing)
-   • Use foreach for simple iteration over all items
-
-2. MODIFYING COLLECTIONS:
-   • NEVER remove items while iterating with for/foreach
-   • Use reverse iteration or collect items to remove separately
-   • Consider using Queue<T> or Stack<T> for FIFO/LIFO operations
-
-3. BREAK vs CONTINUE:
-   • break: Exit the entire loop
-   • continue: Skip to next iteration
-   • In nested loops, affects only the innermost loop
-
-4. INFINITE LOOP PREVENTION:
-   • Always ensure loop condition can become false
-   • Check that counters/indices are updated correctly
-   • Add safety checks or maximum iteration limits
-
-5. LOGICAL CONDITIONS:
-   • Double-check your if conditions
-   • !customer.IsProcessed means "not processed" (should process)
-   • customer.IsProcessed means "already processed" (skip)
-
-🎯 EXPECTED BEHAVIOR:
-1. Process priority customers first
-2. Stop processing at closing time
-3. Don't process the same customer twice
-4. Don't modify collection while iterating
-5. Handle empty queue gracefully
-6. Provide accurate time and revenue tracking
-
-💡 PRO TIPS:
-• Use Queue<T> for FIFO processing
-• Sort by priority before processing
-• Keep track of state changes carefully
-• Test with edge cases (empty queue, all priority, past closing)
-*/
