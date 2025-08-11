@@ -33,6 +33,17 @@ class Exercise4_GenericRepository
     }
 }
 
+// ℹ️ What is a record?
+// Records are reference types like classes, but optimized for immutable, data-centric models.
+// Key differences from classes:
+// - Value-based equality: two records with the same property values are considered equal.
+// - Concise syntax: positional records declare properties in the header (like below).
+// - With-expressions: create modified copies without mutating the original.
+// - Deconstruction: easily unpack into variables.
+// Examples:
+//   var p = new Part("OF-001", "Oil Filter");
+//   var p2 = p with { Name = "Premium Oil Filter" }; // copy with one property changed
+//   var (sku, name) = p; // deconstructs the positional record
 public record Part(string Sku, string Name);
 
 public class Repository<T>

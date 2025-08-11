@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05-ClassesAndObjects", "05-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-CollectionsAndGenerics", "06-CollectionsAndGenerics\06-CollectionsAndGenerics.csproj", "{ABE83A90-DA5B-4539-B6CA-BFCB70D6FDC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-IntegrationCheckpoint", "07-IntegrationCheckpoint\07-IntegrationCheckpoint.csproj", "{0865617F-26B4-4038-8BBB-F8F3DE07489D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{ABE83A90-DA5B-4539-B6CA-BFCB70D6FDC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABE83A90-DA5B-4539-B6CA-BFCB70D6FDC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABE83A90-DA5B-4539-B6CA-BFCB70D6FDC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0865617F-26B4-4038-8BBB-F8F3DE07489D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0865617F-26B4-4038-8BBB-F8F3DE07489D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0865617F-26B4-4038-8BBB-F8F3DE07489D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0865617F-26B4-4038-8BBB-F8F3DE07489D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
