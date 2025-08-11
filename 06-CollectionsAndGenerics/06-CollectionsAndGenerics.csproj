@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>CollectionsAndGenerics</RootNamespace>
+  </PropertyGroup>
+  <!-- Default: compile only Program.cs -->
+  <ItemGroup Condition="'$(DEBUG_EXERCISE)' == ''">
+    <Compile Remove="Exercise*.cs" />
+    <None Include="Exercise*.cs" />
+  </ItemGroup>
+  <!-- When targeting a specific exercise -->
+  <ItemGroup Condition="'$(DEBUG_EXERCISE)' != ''">
+    <Compile Remove="Program.cs" />
+    <Compile Remove="Exercise*.cs" />
+    <None Include="Program.cs" />
+    <None Include="Exercise*.cs" />
+    <Compile Include="$(DEBUG_EXERCISE)" />
+  </ItemGroup>
+</Project>
